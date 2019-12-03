@@ -51,22 +51,22 @@ Successfully updated resource recognimagec0ef587c locally
                             "logs:PutLogEvents"],
                             "Resource": { "Fn::Sub" : [ "arn:aws:logs:${region}:${account}:log-group:/aws/lambda/${lambda}:log-stream:*", { "region": {"Ref": "AWS::Region"},  "account": {"Ref": "AWS::AccountId"}, "lambda": {"Ref": "LambdaFunction"}} ]}
                         },
-						{
-							"Effect": "Allow",
-							"Action": [
-								"dynamodb:PutItem",
-								"dynamodb:DeleteItem",
-								"dynamodb:GetItem",
-								"dynamodb:Query",
-								"dynamodb:UpdateItem"
-							],
-							"Resource": "arn:aws:dynamodb:*:*:table/*"
-						},
-						{
-							"Effect": "Allow",
-							"Action": "dynamodb:Query",
-							"Resource": "arn:aws:dynamodb:*:*:table/*/index/*"
-						}
+			{
+				"Effect": "Allow",
+				"Action": [
+					"dynamodb:PutItem",
+					"dynamodb:DeleteItem",
+					"dynamodb:GetItem",
+					"dynamodb:Query",
+					"dynamodb:UpdateItem"
+				],
+				"Resource": "arn:aws:dynamodb:*:*:table/*"
+			},
+			{
+				"Effect": "Allow",
+				"Action": "dynamodb:Query",
+				"Resource": "arn:aws:dynamodb:*:*:table/*/index/*"
+			}
                     ]
                 }
             }
