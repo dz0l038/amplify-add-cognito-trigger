@@ -75,7 +75,6 @@ Successfully updated resource recognimagec0ef587c locally
 
 ```
 const AWS = require('aws-sdk')
-const uuid = require('uuid/v4')
 const ddb = new AWS.DynamoDB();
 ```
 
@@ -87,5 +86,31 @@ if (process.env.ENV === 'prod') {
   console.log("Prod env")
   userTable = "User-***-prod";
 }
+```
+
+```
+exports.handler = function(event, context, callback) {
+    var d = new Date();
+    const userSub = event.request.userAttributes.sub;
+    var paramsUser = {
+        TableName: userTable,
+        Item: {
+            "id": { "S": userSub },
+            "userName": { "S": event.userName },
+            "email": { "S": event.request.userAttributes.email },
+            "create": { "S": d.toISOString()},
+            "lastUpdate": { "S": d.toISOString()},
+        }
+    };
+    ddb.putItem(paramsUser, function(err, data) {
+      if (err) {
+        console.log("Error", err);
+      } else {
+        console.log("Exit", data);
+        event.request.userAttributes.sub = userSub;
+        callback(null, event);
+      }
+    });  
+};
 ```
 
