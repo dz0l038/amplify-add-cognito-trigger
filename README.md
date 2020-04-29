@@ -16,7 +16,7 @@ For this tutorial you will need:
 ## Create the trigger function
 First update your cognito to create the trigger.
 ```
-amplify update cognito
+amplify update auth
 ```
 
 Answer as followed:
