@@ -2,15 +2,16 @@
 Add cognito trigger to an Amplify app
 
 ## Why do I need that
-Amplify make it very easy to integrate Cognito to your app within minutes. No need to reinvent the wheel, and you endup with a pretty secure website, at least way more than if you do it yourself is you are not an expert!
-But Cognito is made to grant access to your user, and that's all. Its puprpose is not to store your users personal information and even less to let them access other users data.
-However, in many case, that is exactly what you want to do. For example, you want your user to store a public description/avatar and to link you user to publications/comments etc. That is exactly the database purpose, so we need to create a link between the Cognito and DynamoDb (that I ll use here because it is well integrated with Amplify). This link is a trigger, we are going to ask a Lambda to add a entry in our User table in DynamoDb when a new user is created.
+Amplify make it very easy to integrate Cognito to your app within minutes. No need to reinvent the wheel, and you end up with a pretty secure website, at least way more than if you do it yourself and are not an expert!
+But Cognito is made to grant access to your user, and that's all. Its purpose is not to store your users' personal information and even less to let them access other users' data.
+
+However, in many cases, that is exactly what you want to do. For example, you want your user to store a public description/avatar and to link your user to publications/comments etc. That is exactly the database's purpose, so we need to create a link between Cognito and DynamoDb (that I'll use here because it is well-integrated with Amplify). This link is a trigger, we are going to ask a Lambda to add an entry in our "User" table in DynamoDb when a new user is created.
 
 
-## Prerequisit
+## Prerequisite
 For this tutorial you will need:
 - An React project with Amplify initialized (https://aws-amplify.github.io/docs/js/react)
-- An DynamoDB table *user* created useing amplify add api
+- A DynamoDB table *user* created using "amplify add api"
 - Having Cognito already initialized in your project (amplify add auth)
 
 ## Create the trigger function
@@ -134,5 +135,5 @@ exports.handler = function(event, context, callback) {
 ```
 
 ## Push the result
-You are done, now when a user sign in and is validate, a new entry will be add to your DynamoDb, easy to manipulate, display and update!
+You are done, now when a user signs in and is validated, a new entry will be add to your DynamoDb, easy to manipulate, display and update!
 
